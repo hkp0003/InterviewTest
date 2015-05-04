@@ -39,7 +39,7 @@ We will be evaluating this project on:
 * code review of design, comments, maintainability.
 
 ### Describe the System
-Please edit this README.md to provide a detailed description of what this system does, and how its moving parts work together.
+My code takes the user input and converts it into a char array. Arfter which I sort the array and store the longest char repetition and it's "counter" as I iterate through the array while checking equalities. If another char has a longer sequence, I swap the longest stored char, and add 1 to it's "counter". As for the number of chars, I just add to my charCounter whenever I iterate the array and find an inequality.
 
 ### Test Plan
-Please edit this README.md to provide a detailed description of additional testing (manual and/or automated) that you would perform for this codebase.
+I used a TDD method for my test cases. For my test cases I wanted to cover extremities as well as basic functionality and special characters.
