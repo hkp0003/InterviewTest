@@ -67,6 +67,12 @@ public class Client {
         consoleOut.println("Client is exiting.");//this could be "broken froma  refactoring ;) change console out back to System.out
         break;
       }
+	  if(line.equalsIgnoreCase("Hello World")){
+		  socketWriter.println(line);
+		  consoleOut.println(line);
+		  consoleOut.println("Client is exiting.");
+		  break;
+	  }
       socketWriter.println(line);
       System.out.println(socketReader.readLine());
     }

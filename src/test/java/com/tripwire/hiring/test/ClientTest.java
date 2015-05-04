@@ -128,4 +128,70 @@ public class ClientTest {
         verify(conOut).println("Hello World");
         verify(conOut).println("Client is exiting.");
     }
+	
+	@Test
+	public void testSendStringToServerAndReceive() throws Exception {
+		PrintStream conOut = mock(PrintStream.class);
+        PrintWriter sockOut = mock(PrintWriter.class);
+        BufferedReader sockIn = mock(BufferedReader.class);
+        when(sockIn.readLine()).thenReturn("aabbb");
+        BufferedReader conIn = mock(BufferedReader.class);
+        when(conIn.readLine()).thenReturn("aabbb").thenReturn("(2,3)");
+
+        Client.sendAndReceive(conOut, sockOut, sockIn, conIn);
+        verify(sockOut).println("aabbb");
+        verify(conOut).println("(2,3)");
+	}
+	
+	public void testSendStringToServerAndReceive2() throws Exception {
+		PrintStream conOut = mock(PrintStream.class);
+        PrintWriter sockOut = mock(PrintWriter.class);
+        BufferedReader sockIn = mock(BufferedReader.class);
+        when(sockIn.readLine()).thenReturn("rittmb");
+        BufferedReader conIn = mock(BufferedReader.class);
+        when(conIn.readLine()).thenReturn("rittmb").thenReturn("(5,2)");
+
+        Client.sendAndReceive(conOut, sockOut, sockIn, conIn);
+        verify(sockOut).println("rittmb");
+        verify(conOut).println("(5,2)");
+	}
+	
+	public void testSendStringToServerAndReceive3() throws Exception {
+		PrintStream conOut = mock(PrintStream.class);
+        PrintWriter sockOut = mock(PrintWriter.class);
+        BufferedReader sockIn = mock(BufferedReader.class);
+        when(sockIn.readLine()).thenReturn("ab***cb");
+        BufferedReader conIn = mock(BufferedReader.class);
+        when(conIn.readLine()).thenReturn("ab***cb").thenReturn("(4,3)");
+
+        Client.sendAndReceive(conOut, sockOut, sockIn, conIn);
+        verify(sockOut).println("ab***cb");
+        verify(conOut).println("(4,3)");
+	}
+	
+	public void testSendStringToServerAndReceive4() throws Exception {
+		PrintStream conOut = mock(PrintStream.class);
+        PrintWriter sockOut = mock(PrintWriter.class);
+        BufferedReader sockIn = mock(BufferedReader.class);
+        when(sockIn.readLine()).thenReturn("ab   cb");
+        BufferedReader conIn = mock(BufferedReader.class);
+        when(conIn.readLine()).thenReturn("ab   cb").thenReturn("(4,3)");
+
+        Client.sendAndReceive(conOut, sockOut, sockIn, conIn);
+        verify(sockOut).println("ab   cb");
+        verify(conOut).println("(4,3)");
+	}
+	
+	public void testSendStringToServerAndReceive5() throws Exception {
+		PrintStream conOut = mock(PrintStream.class);
+        PrintWriter sockOut = mock(PrintWriter.class);
+        BufferedReader sockIn = mock(BufferedReader.class);
+        when(sockIn.readLine()).thenReturn("aaaa");
+        BufferedReader conIn = mock(BufferedReader.class);
+        when(conIn.readLine()).thenReturn("aaaa").thenReturn("(1,4)");
+
+        Client.sendAndReceive(conOut, sockOut, sockIn, conIn);
+        verify(sockOut).println("aaaa");
+        verify(conOut).println("(1,4)");
+	}
 }

@@ -42,6 +42,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Arrays;
+import java.util.ArrayList;
 
 public class Server {
 
@@ -93,8 +95,34 @@ public class Server {
   public static class EchoDataHandler implements DataHandler{
     @Override
     public String handle(String data) {
-      System.out.println("Received data = " + data);
-      return data;
+      //System.out.println("Received data = " + data);
+      //return data;
+	  char[] dataArray = data.toCharArray();
+	  Arrays.sort(dataArray);
+	  int counter = 1;
+	  int checkLength = 0;
+	  int numberOfChars = 1;
+	  char longestChar = dataArray[0];
+	  for(int i = 0; i <= dataArray.length-1; i++){
+			if(i+1 < dataArray.length && longestChar!= dataArray[i+1]){
+				if(dataArray[i] != dataArray[i+1]){
+					numberOfChars++;
+					checkLength= 0;
+				}		
+				checkLength++;
+				if(checkLength > counter){
+					counter = checkLength;
+					System.out.println(counter);
+					longestChar = dataArray[i+1];
+					checkLength = 0;
+				}			
+			}
+			else{
+				counter ++;
+			}
+		}
+	  String result = "("+numberOfChars +","+(counter-1)+")";
+	  return result;
     }
   }
 }
